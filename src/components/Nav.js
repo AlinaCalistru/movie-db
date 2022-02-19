@@ -1,14 +1,13 @@
 import React from "react";
 
 export default function Nav(props) {
-  // const today = new Date();
-  // const date = today.getFullYear();
-
   const [formData, setFormData] = React.useState(props.searchParams);
 
+  // update formData based on fields interaction
   function handleFieldChange(event) {
     const { name, value, type, checked } = event.target;
 
+    // for genres fields update an array based on the checked property of the element
     if (type === "checkbox") {
       if (checked) {
         if ("genres" in formData) {
@@ -27,7 +26,6 @@ export default function Nav(props) {
         }
       }
     }
-    // console.log(formData);
 
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -35,9 +33,8 @@ export default function Nav(props) {
     }));
   }
 
+  //  pass back to App the searchParams updated values
   function handleSubmitSearch(event) {
-    console.log("aaa");
-    console.log(formData);
     event.preventDefault();
     props.setSearchParams(formData);
   }
@@ -52,7 +49,6 @@ export default function Nav(props) {
               id="input-search"
               placeholder="Search a movie title"
               name="title"
-              // value={props.searchParams.title}
               onChange={handleFieldChange}
             />
             <button id="btn-search" type="submit">
