@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Movie from "./components/Movie";
+import Nav from "./components/Nav";
+import "./style.css";
 
-function App() {
+export default function App() {
+  const today = new Date();
+  const date = today.getFullYear();
+
+  const [searchParams, setSearchParams] = React.useState({
+    title: "",
+    count: 9,
+    release_date: "," + date,
+  });
+  const [movies, setMoviesData] = React.useState([]);
+
+  React.useEffect(
+    function () {
+      console.log("Effect ran");
+      console.log(searchParams);
+
+      let urlParams = new URLSearchParams(searchParams).toString();
+      fetch("https://imdb-api.com/API/AdvancedSearch/k_m7j40zj2?" + urlParams)
+        .then((res) => res.json())
+        .then((data) => setMoviesData(data.results));
+    },
+    [searchParams]
+  ); 
+
+  const movieList = movies.map((item) => {
+    return <Movie key={item.id} item={item} />;
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/*logo, search bar, filtering results by genre and type, GO,clear filters   */}
+
+      <Nav searchParams={searchParams} setSearchParams={setSearchParams} />
+      {/* list of cards with their data that were retrieved with API */}
+      <div className="movies">{movieList}</div>
+    </>
   );
 }
-
-export default App;

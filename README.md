@@ -1,3 +1,21 @@
+# Movie-db API React application
+
+I built this project to practice my React knowledge. I decided to build an application for searching for movies.     
+To do so, I implemented the search function inside a React component that is updating a variable through useState hook.    
+The Nav React component contains the input for titles, a list of genres to filter by and the submit button.     
+Once the useState variable is modified it will trigger the useEffect hook and call the IMDB API.    
+The JSON response is then used to generate multiple movies React components that will be displayed on the screen.    
+As an extra, I tried to make everything responsive and should work properly on all types of devices (mobile, tablet and desktop).    
+
+## Technologies used  
+- React with React Hooks (useEffect, useState), React Components  
+- JavaScript for computing the list of genres checked/unchecked  
+- HTML & CSS for display and responsiveness  
+- RestAPI/Ajax for accessing third-party service to retrieve results  
+
+## Future implementation
+I would like to add React Router for creating specific page details of each result displayed on the front page  
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
