@@ -3,7 +3,7 @@ import React from "react";
 export default function Movie(props) {
   return (
     <div className="movie">
-      <img src={props.item.image} className="movie-image" />
+      <img src={props.item.image} className="movie-image" alt={props.item.title} />
       <div className="movie-details">
         <p>
           ⭐<span className="">({props.item.imDbRating}) </span> out of{" "}
